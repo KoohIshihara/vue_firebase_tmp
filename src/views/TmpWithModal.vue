@@ -19,7 +19,6 @@
 import { createNamespacedHelpers } from "vuex"
 import Auth from "@/components/shared/Auth"
 const { mapState: mapStateAuth, mapActions: mapActionsAuth } = createNamespacedHelpers("auth")
-import Header from "@/components/shared/Header"
 import ModalController from "@/components/shared/ModalController"
 import ModuleTmp from "@/components/module/ModuleTmp"
 import ModuleTmp2 from "@/components/module/ModuleTmp2"
@@ -27,7 +26,6 @@ import ModuleTmp2 from "@/components/module/ModuleTmp2"
 export default {
   components: {
     Auth,
-    Header,
     ModalController,
     ModuleTmp,
     ModuleTmp2
