@@ -1,4 +1,4 @@
-// var config = {
+// let config = {
 //   apiKey: process.env.VUE_APP_FIREBASE_APIKEY,
 //   authDomain: process.env.VUE_APP_FIREBASE_AUTHDOMAIN,
 //   databaseURL: process.env.VUE_APP_FIREBASE_DATABASEURL,
@@ -19,7 +19,7 @@
 // - mixpanelのenv切り替えたか？
 
 const env = "dev"
-var config, api
+let config, api
 
 if (env === "dev") {
   config = {
