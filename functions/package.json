@@ -10,13 +10,13 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "firebase-admin": "^8.9.2",
-    "firebase-functions": "^3.3.0",
-    "date-fns": "^2.9.0",
-    "nodemailer": "^6.3.0"
+    "date-fns": "^2.16.1",
+    "firebase-admin": "^9.3.0",
+    "firebase-functions": "^3.11.0",
+    "nodemailer": "^6.4.14"
   },
   "private": true,
   "engines": {
-    "node": "8"
+    "node": "10"
   }
 }

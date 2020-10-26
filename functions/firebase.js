@@ -1,28 +1,48 @@
-const admin = require('firebase-admin')
+const config = require("./config")
+const admin = require("firebase-admin")
+const FieldValue = admin.firestore.FieldValue
+const domain = config.domain
 
-// Prod
-admin.initializeApp({
-  apiKey: 'AIzaSyAQRp7aGpHULGvhktoE9N0Lbva6JlVF5Ow',
-  authDomain: 'daily-task-prod.firebaseapp.com',
-  databaseURL: 'https://daily-task-prod.firebaseio.com',
-  projectId: 'daily-task-prod',
-  storageBucket: 'daily-task-prod.appspot.com',
-  messagingSenderId: '377537491385'
-})
+admin.initializeApp(config.config)
 
-// Dev
-// admin.initializeApp({
-//   apiKey: 'AIzaSyA3dd12xsYMJdVktvOv7eklOO53yUkdY9Y',
-//   authDomain: 'daily-task-dev.firebaseapp.com',
-//   databaseURL: 'https://daily-task-dev.firebaseio.com',
-//   projectId: 'daily-task-dev',
-//   storageBucket: 'daily-task-dev.appspot.com',
-//   messagingSenderId: '636885484852'
-// })
+// We can download service account key here
+// https://console.cloud.google.com/iam-admin/serviceaccounts?project=setteicho-dev&folder=&organizationId=&supportedpurview=project
+
+// const env = "prod"
+// let domain, serviceAccount
+// if (env === "dev") {
+//   // Dev
+//   // serviceAccount = require('./key-dev.json')
+//   admin.initializeApp({
+//     // credential: admin.credential.cert(serviceAccount),
+//     apiKey: "AIzaSyCbzQbG634jk3Z8MWoTQCUqCrLX7vlCv6A",
+//     authDomain: "fir-tmp-project.firebaseapp.com",
+//     databaseURL: "https://fir-tmp-project.firebaseio.com",
+//     projectId: "fir-tmp-project",
+//     storageBucket: "fir-tmp-project.appspot.com",
+//     messagingSenderId: "230309505883"
+//   })
+//   domain = "https://asc.habitfivepercent.com"
+// } else if (env === "prod") {
+//   // Prod
+//   // serviceAccount = require('./key-prod.json')
+//   admin.initializeApp({
+//     // credential: admin.credential.cert(serviceAccount),
+//     apiKey: "AIzaSyCbzQbG634jk3Z8MWoTQCUqCrLX7vlCv6A",
+//     authDomain: "fir-tmp-project.firebaseapp.com",
+//     databaseURL: "https://fir-tmp-project.firebaseio.com",
+//     projectId: "fir-tmp-project",
+//     storageBucket: "fir-tmp-project.appspot.com",
+//     messagingSenderId: "230309505883"
+//   })
+//   domain = "https://asc.habitfivepercent.com"
+// }
 
 const db = admin.firestore()
+const auth = admin.auth
+
 db.settings({
   timestampsInSnapshots: true
 })
 
-module.exports = db
+module.exports = { db, auth, FieldValue, domain }

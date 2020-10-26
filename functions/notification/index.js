@@ -1,8 +1,4 @@
-const format = require('date-fns/format')
-const ja = require('date-fns/locale/ja')
 const nodemailer = require("nodemailer")
-
-const db = require("../firebase.js")
 
 const gmailEmail = "appsocially.common@gmail.com"
 const gmailPassword = "chatcenter"
@@ -16,26 +12,14 @@ const mailTransport = nodemailer.createTransport({
   }
 })
 
-var sendNotification = async (email) => {
-  // var user = await db.collection("USERS")
-  //   .doc(uid)
-  //   .get()
-  //   .then(q => {
-  //     return q.docs.map(d => {
-  //       return d.data()
-  //     })
-  //   })
-
-  var text = `
-本文
-  `
+const sendNotification = async (email, subject, text) => {
   console.log(`send ${text} \n`)
   // メール設定
   let adminMail = {
     from: gmailEmail,
     to: email,
-    subject: "タイトル",
-    text: text
+    subject,
+    text
   }
 
   // 管理者へのメール送信
@@ -47,4 +31,6 @@ var sendNotification = async (email) => {
   })
 }
 
-module.exports.sendDailyNotification = sendNotification
+// sendNotification('ko.ishihara@chatcenter.io', 'title', 'body')
+
+module.exports = sendNotification
