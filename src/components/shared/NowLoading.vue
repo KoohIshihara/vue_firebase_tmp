@@ -1,15 +1,13 @@
 <template lang="pug">
   transition
     div(v-if="show").wrap-now-loading.f.fh
-      div
-        div.f.fc
-          span Now Loading
+      v-progress-circular(indeterminate)
 </template>
 
 <style lang="scss" scoped>
 .wrap-now-loading {
   position: fixed;
-  z-index: 1000;
+  z-index: 2000;
   left: 0;
   top: 0;
   width: 100%;
@@ -46,22 +44,6 @@ export default {
     show: {
       type: Boolean,
       required: true
-    }
-  },
-  data () {
-    return {
-
-    }
-  },
-  async created () {
-
-  },
-  methods: {
-    // ...mapActionsTeam([
-    //   'loadMemberUsers'
-    // ])
-    tweet () {
-      this.$emit('tweetPost')
     }
   }
 }
