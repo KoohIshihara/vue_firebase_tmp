@@ -16,6 +16,12 @@ export default {
       "isAnonymous"
     ])
   },
+  props: {
+    redirectWithLoginFailed: {
+      type: Boolean,
+      default: false
+    }
+  },
   watch: {
     // Check if we should login again if authentication info changes
     isAuthenticating (isAuthenticating) {
@@ -50,6 +56,10 @@ export default {
     async checkAuthStatus (isAuthenticating, isLoggedIn) {
       if (!isAuthenticating && !isLoggedIn) {
         this.$emit("loginFailed")
+        if (this.redirectWithLoginFailed) {
+          const path = encodeURIComponent(this.$route.path)
+          this.$router.push(`/sign-in/${path}`)
+        }
       } else if (isLoggedIn) {
         this.$emit("loggedIn")
       }

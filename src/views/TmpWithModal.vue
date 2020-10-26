@@ -1,5 +1,5 @@
 <template lang="pug">
-  Auth(@loginFailed="onFailedAuthentication")
+  Auth(:redirectWithLoginFailed="true")
     Header(:content="header")
     ModalPage(v-for="(item, index) in modalPages"
       :showModalPage="item.show"
@@ -146,9 +146,6 @@ export default {
       setTimeout(() => {
         this.$router.push("/sign-in")
       }, 400)
-    },
-    onFailedAuthentication () {
-      this.$router.push("/sign-in")
     }
   }
 }

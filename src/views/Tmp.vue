@@ -1,5 +1,6 @@
 <template lang="pug">
-  Auth(@loggedIn="onLoggedIn" @loginFailed="onFailedAuthentication")
+  Auth(@loggedIn="onLoggedIn"
+    :redirectWithLoginFailed="true")
     Header(:content="headerContent")
     div.wrap-home.f.fh
       ModuleTmp
@@ -44,14 +45,8 @@ export default {
     ...mapStateAuth(['uid'])
   },
   methods: {
-    onFailedAuthentication () {
-      this.$router.push('/sign-in')
-    },
     onLoggedIn () {
     
-    },
-    onHeaderRight () {
-
     }
   }
 }

@@ -19,11 +19,11 @@
   width: 100%;
   height: 100vh;
   .sign-ui {
-    width: 92%;
+    width: $base_width_percent;
+    max-width: $base_max_width_px;
     margin: 0 auto;
-    max-width: 620px;
     .wrap-select-sign-in-up {
-      color: $border_color;
+      color: $active_color;
     }
   }
 }
@@ -46,7 +46,7 @@ export default {
   props: {
     id: {
       type: String,
-      default: ''
+      default: ""
     }
   },
   data: () => ({
@@ -97,7 +97,10 @@ export default {
 
         this.showNowLoading = false
 
-        this.$router.push("/tmp")
+        const path = (this.$route.params.redirectPath) ? 
+          decodeURIComponent(this.$route.params.redirectPath)
+          : `/tmp`
+        this.$router.push(path)
       }
     },
     signInSuccess (redirectUrl) {

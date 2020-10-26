@@ -39,7 +39,7 @@ export default new Router({
         import("@/views/SignIn")
     },
     {
-      path: "/sign-in/:redirect",
+      path: "/sign-in/:redirectPath",
       name: "sign-in",
       props: true,
       component: () =>
@@ -53,7 +53,7 @@ export default new Router({
         import("@/views/SignIn")
     },
     {
-      path: "/sign-up/:redirect",
+      path: "/sign-up/:redirectPath",
       name: "sign-up",
       props: true,
       component: () =>
