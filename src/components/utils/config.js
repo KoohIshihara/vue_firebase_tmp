@@ -17,6 +17,7 @@
 // - ProdのプロジェクトもAuth Method許可したか？
 // - cloud functionsのconfigもprodにしたか？
 // - mixpanelのenv切り替えたか？
+// - セキュリティルールprodも書いたか？
 
 const env = "dev"
 let config, api

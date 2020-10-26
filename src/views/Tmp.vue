@@ -18,7 +18,7 @@
 import db from '@/components/utils/firebase'
 import { createNamespacedHelpers } from 'vuex'
 const { mapState: mapStateAuth, mapActions: mapActionsAuth } = createNamespacedHelpers('auth')
-import Auth from '@/components/auth'
+import Auth from '@/components/shared/Auth'
 import Header from '@/components/shared/Header.vue'
 import ModuleTmp from '@/components/module/ModuleTmp'
 
