@@ -1,12 +1,14 @@
 <template lang="pug">
   transition(name="fade")
-    div(v-if="showModal").wrap-modal-page
+    div(v-if="showModalPage"
+      :style="`z-index: ${100 + index}`").wrap-modal-page
       div(@click.stop)
         slot
-        
 </template>
 
 <style lang="scss" scoped>
+@import "@/scss/_variables.scss";
+
 .wrap-modal-page {
   position: absolute;
   width: 100%;
@@ -14,7 +16,7 @@
   left: 0;
   padding-top: 48px;
   z-index: 101;
-  // background: $primary_bg_color;
+  background: $primary_bg_color;
 }
 
 .fade-enter-active,
@@ -31,8 +33,12 @@
 <script>
 export default {
   props: {
-    showModal: {
+    showModalPage: {
       type: Boolean,
+      required: true
+    },
+    index: {
+      type: Number,
       required: true
     }
   }

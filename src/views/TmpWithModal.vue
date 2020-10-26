@@ -1,19 +1,22 @@
 <template lang="pug">
   Auth(@loginFailed="onFailedAuthentication")
     Header(:content="header")
-    ModalPage(
-      v-if="uid"
-      @closeModalPage="closeModalPage"
-      :showModal="showModalPage")
-      ModuleTmp(v-if="modalPageContent == 'tmp'")
+    ModalPage(v-for="(item, index) in modalPages"
+      :showModalPage="item.show"
+      :index="index")
+      ModuleTmp(v-if="modalPages[index].currentContent == 'tmp' && index == 0"
+        @closeModalPage="modalPages[index].show = false")
+      ModuleTmp2(v-if="modalPages[index].currentContent == 'tmp2' && index == 1"
+        @closeModalPage="modalPages[index].show = false")
     ModalWindow(
-      @closeModal="closeModalWindow"
-      modalContentId="tmp"
-      :showModal="showModalWindow")
+      :showModal="showModalWindow"
+      @closeModalWindow="closeModalWindow")
+      ModuleTmp(v-if="modalWindowContent == 'tmp'")
     div.wrap-home
       div.py50
-        span(@click="$router.push('/home/testid')").block to modal page
-        span(@click="logout").block Sign Out
+        p(@click="$router.push(`/tmp/${uid}`)").block to modal page
+        p(@click="openModalWindow('tmp')").block open modal window
+        p(@click="logout").block Sign Out
 </template>
 
 <style lang="scss" scoped>
@@ -31,6 +34,7 @@ import Header from "@/components/shared/Header"
 import ModalWindow from "@/components/shared/ModalWindow"
 import ModalPage from "@/components/shared/ModalPage"
 import ModuleTmp from "@/components/module/ModuleTmp"
+import ModuleTmp2 from "@/components/module/ModuleTmp2"
 
 export default {
   components: {
@@ -38,7 +42,8 @@ export default {
     Header,
     ModalPage,
     ModalWindow,
-    ModuleTmp
+    ModuleTmp,
+    ModuleTmp2
   },
   computed: {
     ...mapStateAuth(["uid"])
@@ -59,9 +64,12 @@ export default {
           to: "/tmp"
         }
       },
-      showModalPage: false,
+      modalPages: [
+        { currentContent: "", show: false },
+        { currentContent: "", show: false }
+      ],
       showModalWindow: false,
-      modalPageContent: ""
+      modalWindowContent: ""
     }
   },
   watch: {
@@ -77,31 +85,61 @@ export default {
   methods: {
     ...mapActionsAuth(["signOut"]),
     changeModalPageByRouteParams () {
-      // console.log(this.$route.name)
+      console.log(this.$route.name)
+
+      this.header = {}
+      this.modalPageContent = ""
+
+      let currentModalIndex
       switch (this.$route.name) {
         case "tmp":
+          currentModalIndex = -1
           this.header = this.rootHeader
-          this.modalPageContent = ""
-          this.showModalPage = false
           break
         case "tmp_detail":
+          currentModalIndex = 0
+          this.modalPages[currentModalIndex].currentContent = "tmp"
+          this.modalPages[currentModalIndex].show = true
+
           this.header = {
-            title: "Tmp Detail",
+            title: "Detail1",
             left: {
-              label: "Tmp",
+              label: "Detail1",
               icon: "mdi-chevron-left",
-              to: "/tmp"
-            },
-            right: {
-              label: "Tmp",
-              icon: "mdi-chevron-right",
               to: "/tmp"
             }
           }
-          this.modalPageContent = "tmp"
-          this.showModalPage = false
+          break
+        case "tmp_detail2":
+          currentModalIndex = 1
+          this.modalPages[currentModalIndex].currentContent = "tmp2"
+          this.modalPages[currentModalIndex].show = true
+
+          this.header = {
+            title: "Tmp Detail2",
+            left: {
+              label: "Tmp Detail1",
+              icon: "mdi-chevron-left",
+              to: `/tmp/${this.uid}`
+            }
+          }
           break
       }
+      this.modalPages = this.modalPages.map((e, i) => {
+        if (i > currentModalIndex) {
+          e.currentContent = ""
+          e.show = false
+        }
+        return e
+      })
+    },
+    openModalWindow (content) {
+      this.modalWindowContent = "tmp"
+      this.showModalWindow = true
+    },
+    closeModalWindow () {
+      this.modalWindowContent = ""
+      this.showModalWindow = false
     },
     logout () {
       this.signOut()
@@ -111,12 +149,6 @@ export default {
     },
     onFailedAuthentication () {
       this.$router.push("/sign-in")
-    },
-    closeModalPage () {
-      this.showModalPage = false
-    },
-    closeModalWindow () {
-      this.showModalWindow = false
     }
   }
 }

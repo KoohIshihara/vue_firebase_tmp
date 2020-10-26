@@ -18,8 +18,15 @@ export default new Router({
         import("@/views/TmpWithModal")
     },
     {
-      path: "/tmp/:id",
+      path: "/tmp/:id1",
       name: "tmp_detail",
+      props: true,
+      component: () =>
+        import("@/views/TmpWithModal")
+    },
+    {
+      path: "/tmp/:id1/:id2",
+      name: "tmp_detail2",
       props: true,
       component: () =>
         import("@/views/TmpWithModal")

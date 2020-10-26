@@ -1,22 +1,13 @@
 <template lang="pug">
-  div.wrap-module-tmp
-    div.tmp-content
-      p module tmp
-      //- p(@click="$emit('closeModalPage')") close moadal page
-      p(@click="$router.push(`/tmp/${uid}/settings`)") to modal page 2
+  div.wrap-tmp
+    p module tmp 2
+    //- p(@click="$emit('closeModalPage')") close moadal page
 </template>
 
 <style lang="scss" scoped>
-@import "@/scss/_variables.scss";
-
-.wrap-module-tmp {
+.wrap-tmp {
   width: 100%;
   min-height: 100vh;
-  .tmp-content {
-    width: $base_width_percent;
-    max-width: $base_max_width_px;
-    margin: 0 auto;
-  }
 }
 </style>
 

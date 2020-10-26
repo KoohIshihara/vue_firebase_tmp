@@ -9,6 +9,7 @@ import VueClipboard from "vue-clipboard2"
 import "@mdi/font/css/materialdesignicons.css"
 import "material-design-icons-iconfont/dist/material-design-icons.css"
 require("@/scss/_variables.scss")
+import "@/scss/_variables.scss"
 
 Vue.use(VueClipboard)
 

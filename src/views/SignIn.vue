@@ -13,6 +13,8 @@
 </template>
 
 <style lang="scss" scoped>
+@import "@/scss/_variables.scss";
+
 .wrap-sign-ui {
   width: 100%;
   height: 100vh;
@@ -21,7 +23,7 @@
     margin: 0 auto;
     max-width: 620px;
     .wrap-select-sign-in-up {
-      // color: $active_text_color;
+      color: $border_color;
     }
   }
 }

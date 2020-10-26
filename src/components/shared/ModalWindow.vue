@@ -1,11 +1,8 @@
 <template lang="pug">
   transition(name="fade")
-    div(v-if="showModal" @click="$emit('closeModal')").wrap-modal.f.fh
+    div(v-if="showModal" @click="$emit('closeModalWindow')").wrap-modal.f.fh
       div(@click.stop).prevent-wrap.f.fc
-        //- ModuleSetClient(
-          v-if="modalContentId === 'createClient'"
-          @closeModal="() => { $emit('closeModal') }")
-        
+        slot
 </template>
 
 <style lang="scss" scoped>
@@ -15,7 +12,7 @@
   height: 100%;
   left: 0;
   top: 0;
-  z-index: 101;
+  z-index: 1001;
   background: rgba(0, 0, 0, 0.4);
   overflow: scroll;
   .prevent-wrap {
@@ -33,32 +30,12 @@
 </style>
 
 <script>
-// import ModuleSetClient from '@/components/module/ModuleSetClient'
-
 export default {
-  components: {
-    // ModuleSetClient
-  },
   props: {
     showModal: {
       type: Boolean,
       required: true
-    },
-    modalContentId: {
-      type: String,
-      required: true
-    },
-    option: {
-      type: Object,
-      required: false
     }
-  },
-  data () {
-    return {
-      
-    }
-  },
-  methods: {
   }
 }
 </script>
