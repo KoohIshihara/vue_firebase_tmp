@@ -1,7 +1,15 @@
 <template lang="pug">
-  div
+  div.wrap-sign-in
     div(id="firebaseui-auth-container")
 </template>
+
+<style lang="scss">
+.wrap-sign-in {
+  .firebaseui-idp-list {
+    padding: 0 !important;
+  }
+}
+</style>
 
 <script>
 import { firebase } from "@/components/utils/firebase"

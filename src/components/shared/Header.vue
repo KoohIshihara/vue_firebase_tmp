@@ -3,12 +3,12 @@
     div.wrap-shared-header.f.fc
       div.header-content.f.fh
         div(v-if="content.left" @click="onLeft").left.f.fm
-          v-icon(:color="content.left.color").mr4 {{content.left.icon}}
-          span(:style="`color: ${content.left.color};`").fz14 {{content.left.label}}
+          v-icon(:color="content.left.color").mr2 {{content.left.icon}}
+          span(:style="`color: ${content.left.color};`").fz14.mt2 {{content.left.label}}
         div.wrap-title
           span(v-if="content.title").line-clamp-1.fz14 {{content.title}}
         div(v-if="content.right" @click="onRight").right.f.fm
-          span(:style="`color: ${content.right.color};`").fz14.mr4 {{content.right.label}}
+          span(:style="`color: ${content.right.color};`").fz14.mr2.mt2 {{content.right.label}}
           v-icon(:color="content.right.color") {{content.right.icon}}
 </template>
 
@@ -52,7 +52,7 @@
 </style>
 
 <script>
-import Auth from "@/components/auth"
+import Auth from "@/components/shared/Auth"
 
 export default {
   components: {

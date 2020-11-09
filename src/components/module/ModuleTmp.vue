@@ -36,12 +36,7 @@ export default {
     }
   },
   methods: {
-    onLoggedIn () {
-      
-    },
-    onFailedAuthentication () {
-      this.$router.push("/sign-in")
-    }
+    
   }
 }
 </script>

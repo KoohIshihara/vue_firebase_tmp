@@ -4,7 +4,7 @@
     div.wrap-sign-ui.f.fh
       div.sign-ui
         div.wrap-title.f.fc.mb30
-          span.welcome tmpへようこそ！
+          span.welcome SpotWorkへようこそ！
         div.wrap-sign-in-ui.mb24
           SignIn(@signInSuccess="onLoggedIn")
         div.wrap-select-sign-in-up.f.fc
@@ -32,7 +32,7 @@
 <script>
 import db, { firebase } from "@/components/utils/firebase"
 import { createNamespacedHelpers } from "vuex"
-import Auth from "@/components/auth"
+import Auth from "@/components/shared/Auth"
 import SignIn from "@/components/sign-in/firebase-sign-in-ui"
 import NowLoading from "@/components/shared/NowLoading"
 const { mapState: mapStateAuth } = createNamespacedHelpers("auth")
@@ -99,8 +99,8 @@ export default {
 
         const path = (this.$route.params.redirectPath) ? 
           decodeURIComponent(this.$route.params.redirectPath)
-          : `/tmp`
-        this.$router.push(path)
+          : `/spots`
+        this.$router.replace(path)
       }
     },
     signInSuccess (redirectUrl) {

@@ -32,6 +32,18 @@ export default new Router({
         import("@/views/TmpWithModal")
     },
     {
+      path: "/spots",
+      name: "spots",
+      component: () =>
+        import("@/views/Spots")
+    },
+    {
+      path: "/spots/:shopId",
+      name: "spot_detail",
+      component: () =>
+        import("@/views/Spots")
+    },
+    {
       path: "/sign-in",
       name: "sign-in",
       props: true,
