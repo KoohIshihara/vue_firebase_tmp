@@ -1,14 +1,14 @@
-import { config, api, domain } from "./config"
-import firebase from "firebase/app"
-import "firebase/firestore"
-import "firebase/storage"
-import "firebase/auth"
+import { config, api, domain } from './config'
+import firebase from 'firebase/app'
+import 'firebase/firestore'
+import 'firebase/storage'
+import 'firebase/auth'
 
 const firebaseApp = firebase.initializeApp(config)
 
-const strage = firebaseApp.storage()
-const auth = firebaseApp.auth()
 const firestore = firebaseApp.firestore()
+const storage = firebaseApp.storage()
+const auth = firebaseApp.auth()
 
-export default firebaseApp.firestore()
-export { firestore, firebase, strage, auth, api }
+export default firestore
+export { firebase, auth, storage, api, domain }

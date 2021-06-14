@@ -30,12 +30,13 @@
 </style>
 
 <script>
-import db, { firebase } from '@/components/utils/firebase'
+import database from '@/database'
+import { firebase } from '@/components/utils/firebase'
 import { createNamespacedHelpers } from 'vuex'
+const { mapState: mapStateAuth } = createNamespacedHelpers('auth')
 import Auth from '@/components/shared/Auth'
 import SignIn from '@/components/sign-in/firebase-sign-in-ui'
 import NowLoading from '@/components/shared/NowLoading'
-const { mapState: mapStateAuth } = createNamespacedHelpers('auth')
 
 export default {
   components: {
@@ -75,9 +76,9 @@ export default {
         this.showNowLoading = true
 
         let user = await firebase.auth().currentUser
-        let userDoc = await db.collection('USER').doc(this.uid).get()
-
-        if (!userDoc.exists) {
+        let userDoc = await database.userCollection().findById(this.uid)
+        
+        if (!userDoc) {
           let userObj = {
             uid: user.uid,
             name: user.displayName,
@@ -87,13 +88,8 @@ export default {
             createdAt: user.metadata.creationTime
           }
 
-          const defaultUserIcon = 'https://firebasestorage.googleapis.com/v0/b/fir-tmp-project.appspot.com/o/public%2Faccount.png?alt=media&token=4ad2981f-61ac-42d9-a5ed-45eda74077d0'
-          if (!userObj.iconURL) userObj.iconURL = defaultUserIcon
-
-          await db.collection('USER')
-            .doc(user.uid)
-            .set(userObj)
-        } // if (!userDoc.exists)
+          await database.userCollection().signUp(userObj)
+        }
 
         this.showNowLoading = false
 
