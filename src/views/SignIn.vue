@@ -30,12 +30,12 @@
 </style>
 
 <script>
-import db, { firebase } from "@/components/utils/firebase"
-import { createNamespacedHelpers } from "vuex"
-import Auth from "@/components/auth"
-import SignIn from "@/components/sign-in/firebase-sign-in-ui"
-import NowLoading from "@/components/shared/NowLoading"
-const { mapState: mapStateAuth } = createNamespacedHelpers("auth")
+import db, { firebase } from '@/components/utils/firebase'
+import { createNamespacedHelpers } from 'vuex'
+import Auth from '@/components/shared/Auth'
+import SignIn from '@/components/sign-in/firebase-sign-in-ui'
+import NowLoading from '@/components/shared/NowLoading'
+const { mapState: mapStateAuth } = createNamespacedHelpers('auth')
 
 export default {
   components: {
@@ -46,7 +46,7 @@ export default {
   props: {
     id: {
       type: String,
-      default: ""
+      default: ''
     }
   },
   data: () => ({
@@ -55,10 +55,10 @@ export default {
     showNowLoading: true
   }),
   computed: {
-    ...mapStateAuth(["isLoggedIn", "uid"])
+    ...mapStateAuth(['isLoggedIn', 'uid'])
   },
   mounted () {
-    if (this.uid) this.$router.push("/tmp")
+    if (this.uid) this.$router.push('/tmp')
   },
   methods: {
     loginFailed () {
@@ -69,28 +69,28 @@ export default {
 
       await this.sleepByPromise(0.8)
       let firebaseUser = await firebase.auth().currentUser
-      console.log("firebaseUser:", firebaseUser)
+      console.log('firebaseUser:', firebaseUser)
 
       if (this.uid) {
         this.showNowLoading = true
 
         let user = await firebase.auth().currentUser
-        let userDoc = await db.collection("USER").doc(this.uid).get()
+        let userDoc = await db.collection('USER').doc(this.uid).get()
 
         if (!userDoc.exists) {
           let userObj = {
             uid: user.uid,
             name: user.displayName,
-            profile: "No Profile",
+            profile: 'No Profile',
             iconURL: user.photoURL,
             lastSignInTime: user.metadata.lastSignInTime,
             createdAt: user.metadata.creationTime
           }
 
-          const defaultUserIcon = "https://firebasestorage.googleapis.com/v0/b/fir-tmp-project.appspot.com/o/public%2Faccount.png?alt=media&token=4ad2981f-61ac-42d9-a5ed-45eda74077d0"
+          const defaultUserIcon = 'https://firebasestorage.googleapis.com/v0/b/fir-tmp-project.appspot.com/o/public%2Faccount.png?alt=media&token=4ad2981f-61ac-42d9-a5ed-45eda74077d0'
           if (!userObj.iconURL) userObj.iconURL = defaultUserIcon
 
-          await db.collection("USER")
+          await db.collection('USER')
             .doc(user.uid)
             .set(userObj)
         } // if (!userDoc.exists)

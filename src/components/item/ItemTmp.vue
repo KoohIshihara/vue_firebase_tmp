@@ -1,17 +1,17 @@
 <template lang="pug">
-  div.wrap-item-tmp
+  div.wrap-atom-tmp
 
 </template>
 
 <style lang="scss" scoped>
-.wrap-item-tmp {
+.wrap-atom-tmp {
 }
 </style>
 
 <script>
-import db from "@/components/utils/firebase"
-import { createNamespacedHelpers } from "vuex"
-const { mapState: mapStateAuth } = createNamespacedHelpers("auth")
+import db from '@/components/utils/firebase'
+import { createNamespacedHelpers } from 'vuex'
+const { mapState: mapStateAuth } = createNamespacedHelpers('auth')
 
 export default {
   props: {
@@ -26,7 +26,7 @@ export default {
     }
   },
   computed: {
-    ...mapStateAuth(["uid"])
+    ...mapStateAuth(['uid'])
   },
   async created () {
 

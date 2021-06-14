@@ -1,4 +1,4 @@
-import { config, api } from "./config"
+import { config, api, domain } from "./config"
 import firebase from "firebase/app"
 import "firebase/firestore"
 import "firebase/storage"

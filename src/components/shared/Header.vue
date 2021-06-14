@@ -52,7 +52,7 @@
 </style>
 
 <script>
-import Auth from "@/components/shared/Auth"
+import Auth from '@/components/shared/Auth'
 
 export default {
   components: {

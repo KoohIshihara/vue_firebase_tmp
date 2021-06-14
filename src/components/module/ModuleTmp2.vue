@@ -12,14 +12,14 @@
 </style>
 
 <script>
-import { createNamespacedHelpers } from "vuex"
-const { mapState: mapStateAuth, mapActions: mapActionsAuth } = createNamespacedHelpers("auth")
+import { createNamespacedHelpers } from 'vuex'
+const { mapState: mapStateAuth, mapActions: mapActionsAuth } = createNamespacedHelpers('auth')
 
 export default {
   components: {
   },
   computed: {
-    ...mapStateAuth(["uid"])
+    ...mapStateAuth(['uid'])
   },
   data () {
     return {
@@ -31,7 +31,7 @@ export default {
       
     },
     onFailedAuthentication () {
-      this.$router.push("/sign-in")
+      this.$router.push('/sign-in')
     }
   }
 }

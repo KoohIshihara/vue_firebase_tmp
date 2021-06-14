@@ -4,16 +4,16 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from "vuex"
-const { mapState, mapActions, mapMutations } = createNamespacedHelpers("auth")
+import { createNamespacedHelpers } from 'vuex'
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers('auth')
 export default {
   computed: {
     ...mapState([
-      "uid",
-      "isLoggedIn",
-      "isAuthenticating",
-      "roles",
-      "isAnonymous"
+      'uid',
+      'isLoggedIn',
+      'isAuthenticating',
+      'roles',
+      'isAnonymous'
     ])
   },
   props: {
@@ -46,47 +46,23 @@ export default {
   },
   methods: {
     ...mapMutations([
-      "updateOnboardingData",
-      "updateIsSigningOut",
-      "updateAuthStatus"
+      'updateOnboardingData',
+      'updateIsSigningOut',
+      'updateAuthStatus'
     ]),
-    ...mapActions(["setupAuthStateHandler", "signOut"]),
+    ...mapActions(['setupAuthStateHandler', 'signOut']),
 
     // Check if we need to login, or if we are logged in
     async checkAuthStatus (isAuthenticating, isLoggedIn) {
       if (!isAuthenticating && !isLoggedIn) {
-        this.$emit("loginFailed")
+        this.$emit('loginFailed')
         if (this.redirectWithLoginFailed) {
           const path = encodeURIComponent(this.$route.path)
           this.$router.push(`/sign-in/${path}`)
         }
       } else if (isLoggedIn) {
-        this.$emit("loggedIn")
+        this.$emit('loggedIn')
       }
-
-      // if (this.isAnonymous) {
-      //   // mixpanel.identify(this.uid)
-      //   mixpanel.register({
-      //     userId: this.uid,
-      //     name: "Anonymous"
-      //   })
-      //   mixpanel.people.set({
-      //     "$last_login": new Date(),
-      //     userId: this.uid,
-      //     name: "Anonymous"
-      //   })
-      // } else {
-      //   mixpanel.identify(this.uid)
-      //   mixpanel.register({
-      //     userId: this.uid,
-      //     name: this.uid
-      //   })
-      //   mixpanel.people.set({
-      //     "$last_login": new Date(),
-      //     userId: this.uid,
-      //     name: this.uid
-      //   })
-      // }
     }
   }
 }

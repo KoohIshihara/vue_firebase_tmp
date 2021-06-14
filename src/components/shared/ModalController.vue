@@ -19,13 +19,13 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from "vuex"
-const { mapState: mapStateAuth } = createNamespacedHelpers("auth")
-import Header from "@/components/shared/Header"
-import ModalWindow from "@/components/shared/ModalWindow"
-import ModalPage from "@/components/shared/ModalPage"
-import ModuleTmp from "@/components/module/ModuleTmp"
-import ModuleTmp2 from "@/components/module/ModuleTmp2"
+import { createNamespacedHelpers } from 'vuex'
+const { mapState: mapStateAuth } = createNamespacedHelpers('auth')
+import Header from '@/components/shared/Header'
+import ModalWindow from '@/components/shared/ModalWindow'
+import ModalPage from '@/components/shared/ModalPage'
+import ModuleTmp from '@/components/module/ModuleTmp'
+import ModuleTmp2 from '@/components/module/ModuleTmp2'
 
 export default {
   components: {
@@ -36,34 +36,34 @@ export default {
     ModuleTmp2
   },
   computed: {
-    ...mapStateAuth(["uid"])
+    ...mapStateAuth(['uid'])
   },
   data () {
     return  {
       header: {},
       rootHeader: {
-        title: "Tmp",
+        title: 'Tmp',
         left: {
-          label: "Home",
-          icon: "mdi-home",
-          to: "/tmp"
+          label: 'Home',
+          icon: 'mdi-home',
+          to: '/tmp'
         },
         right: {
-          label: "Acount",
-          icon: "mdi-account",
-          to: "/tmp"
+          label: 'Acount',
+          icon: 'mdi-account',
+          to: '/tmp'
         }
       },
       modalPages: [
-        { currentContent: "", show: false },
-        { currentContent: "", show: false }
+        { currentContent: '', show: false },
+        { currentContent: '', show: false }
       ],
       showModalWindow: false,
-      modalWindowContent: ""
+      modalWindowContent: ''
     }
   },
   watch: {
-    "$route": function (to, from) {
+    '$route': function (to, from) {
       if (to.path !== from.path) {
         this.changeModalPageByRouteParams()
       }
@@ -77,38 +77,38 @@ export default {
       console.log(this.$route.name)
 
       this.header = {}
-      this.modalPageContent = ""
+      this.modalPageContent = ''
 
       let currentModalIndex
       switch (this.$route.name) {
-        case "tmp":
+        case 'tmp':
           currentModalIndex = -1
           this.header = this.rootHeader
           break
-        case "tmp_detail":
+        case 'tmp_detail':
           currentModalIndex = 0
-          this.modalPages[currentModalIndex].currentContent = "tmp"
+          this.modalPages[currentModalIndex].currentContent = 'tmp'
           this.modalPages[currentModalIndex].show = true
 
           this.header = {
-            title: "Detail1",
+            title: 'Detail1',
             left: {
-              label: "Detail1",
-              icon: "mdi-chevron-left",
-              to: "/tmp"
+              label: 'Detail1',
+              icon: 'mdi-chevron-left',
+              to: '/tmp'
             }
           }
           break
-        case "tmp_detail2":
+        case 'tmp_detail2':
           currentModalIndex = 1
-          this.modalPages[currentModalIndex].currentContent = "tmp2"
+          this.modalPages[currentModalIndex].currentContent = 'tmp2'
           this.modalPages[currentModalIndex].show = true
 
           this.header = {
-            title: "Tmp Detail2",
+            title: 'Tmp Detail2',
             left: {
-              label: "Tmp Detail1",
-              icon: "mdi-chevron-left",
+              label: 'Tmp Detail1',
+              icon: 'mdi-chevron-left',
               to: `/tmp/${this.uid}`
             }
           }
@@ -116,7 +116,7 @@ export default {
       }
       this.modalPages = this.modalPages.map((e, i) => {
         if (i > currentModalIndex) {
-          e.currentContent = ""
+          e.currentContent = ''
           e.show = false
         }
         return e
@@ -127,7 +127,7 @@ export default {
       this.showModalWindow = true
     },
     closeModalWindow () {
-      this.modalWindowContent = ""
+      this.modalWindowContent = ''
       this.showModalWindow = false
     }
   }

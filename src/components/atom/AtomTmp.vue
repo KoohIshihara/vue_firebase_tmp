@@ -9,9 +9,9 @@
 </style>
 
 <script>
-import db from "@/components/utils/firebase"
-import { createNamespacedHelpers } from "vuex"
-const { mapState: mapStateAuth } = createNamespacedHelpers("auth")
+import db from '@/components/utils/firebase'
+import { createNamespacedHelpers } from 'vuex'
+const { mapState: mapStateAuth } = createNamespacedHelpers('auth')
 
 export default {
   props: {
@@ -26,7 +26,7 @@ export default {
     }
   },
   computed: {
-    ...mapStateAuth(["uid"])
+    ...mapStateAuth(['uid'])
   },
   async created () {
 
